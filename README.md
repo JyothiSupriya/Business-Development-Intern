@@ -1,5 +1,7 @@
 # Business Development Intern — Hiring Site
 
+https://vidhivault.github.io/Business-Development-Intern/
+
 Static site + embedded Google Form (with resume upload).  
 Hosting: GitHub Pages. Storage + notifications: Google Forms/Sheets/Drive.
 
@@ -28,8 +30,7 @@ Hosting: GitHub Pages. Storage + notifications: Google Forms/Sheets/Drive.
 
 **Note:** Google Forms file upload requires applicants to sign in with a Google account.
 
-## Notifications
-Form → Responses → ⋮ → **Get email notifications for new responses** (send to vidhivault@gmail.com).
+
 
 ## Privacy
 All responses go to your private Google Sheet and Drive folder created by the Form. Only you (your Google account) can access them.
