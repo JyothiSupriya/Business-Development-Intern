@@ -1,119 +1,64 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Apply — Business Development Intern</title>
-  <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    /* Page-specific polish for the gate */
-    .gate-wrap{display:grid;gap:14px;max-width:560px;margin:14px auto 0}
-    .gate-select{width:100%;padding:10px;border-radius:10px;border:1px solid #e5e7eb;background:#fff}
-    .decline{display:none;background:#fffaf0;border:1px solid #fde68a;padding:14px;border-radius:12px;color:#7c2d12}
-    .helper{color:#6b7280;font-size:.92rem;margin-top:4px}
-    .pill{display:inline-block;padding:.35rem .7rem;border-radius:999px;background:#fff;border:1px solid #e5e7eb;color:#374151;font-size:.85rem;margin:.25rem .25rem 0}
-    .center{text-align:center}
-  </style>
-</head>
-<body class="bg">
-  <header class="site-header">
-    <div class="container">
-      <h1>Apply: Business Development Intern</h1>
-      <p class="subtitle">Healthcare / Mental Health • Early-stage startup</p>
-    </div>
-  </header>
+<section class="card" id="gate">
+  <h2>Application Eligibility</h2>
+  <p class="subtitle" style="margin-top:-6px">Please confirm the two items below to proceed.</p>
 
-  <main class="container">
+  <div style="display:grid; gap:12px; margin:14px 0">
+    <label>
+      <strong>Are you a U.S. Citizen?</strong><br/>
+      <label style="margin-right:12px"><input type="radio" name="citizen" value="yes"> Yes</label>
+      <label><input type="radio" name="citizen" value="no"> No</label>
+    </label>
 
-    <!-- Compact intro -->
-    <section class="card center">
-      <div>
-        <span class="pill">U.S. Citizens only</span>
-        <span class="pill">18+ required</span>
-        <span class="pill">Resume upload via Google Form</span>
-      </div>
-      <h2 style="margin:16px 0 8px;">Start your application</h2>
-      <p class="subtitle" style="max-width:720px;margin:6px auto 0">
-        We use a secure Google Form so you can sign in and upload your resume safely.
-      </p>
-    </section>
+    <label>
+      <strong>Are you 18 years of age or older?</strong><br/>
+      <label style="margin-right:12px"><input type="radio" name="age18" value="yes"> Yes</label>
+      <label><input type="radio" name="age18" value="no"> No</label>
+    </label>
+  </div>
 
-    <!-- Eligibility gate + button -->
-    <section class="card">
-      <h2>Quick eligibility check</h2>
-      <p class="helper">We can only accept applications from U.S. citizens who are 18 or older.</p>
+  <div class="cta-wrap" style="margin-top:6px">
+    <a id="openFormBtn" class="button" href="#" aria-disabled="true" style="pointer-events:none; opacity:.5">
+      Continue to Application
+    </a>
+  </div>
 
-      <div class="gate-wrap">
-        <label>
-          <strong>Are you a U.S. Citizen?</strong><br/>
-          <select id="usCitizen" class="gate-select" aria-label="Are you a U.S. Citizen?">
-            <option value="">Select…</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </label>
+  <div id="denyMsg" style="text-align:center; color:#b45309; background:#fff7ed; border:1px solid #fde68a; padding:10px 12px; border-radius:12px; margin-top:10px; display:none">
+    You must be a U.S. citizen and 18+ to apply.
+  </div>
+</section>
 
-        <label>
-          <strong>Are you 18 years of age or older?</strong><br/>
-          <select id="over18" class="gate-select" aria-label="Are you 18 years of age or older?">
-            <option value="">Select…</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </label>
+<script>
+  // === Eligibility gate logic ===
+  (function () {
+    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSeZYPI7qD0iieOOxrHQYG5zRwSkksIDFpsoL5EGm_zCRInqMg/viewform?usp=dialog"; // <-- REPLACE
+    const btn = document.getElementById("openFormBtn");
+    const deny = document.getElementById("denyMsg");
+    const citizen = Array.from(document.getElementsByName("citizen"));
+    const age18 = Array.from(document.getElementsByName("age18"));
 
-        <!-- Friendly decline -->
-        <div id="declineMsg" class="decline">
-          <strong>Thanks for your interest!</strong><br/>
-          We’re currently accepting applications only from U.S. citizens who are 18 or older.
-          Please check back in the future for additional opportunities. 💛
-        </div>
+    function update() {
+      const c = citizen.find(r => r.checked)?.value;
+      const a = age18.find(r => r.checked)?.value;
 
-        <!-- Open form (only shows if both answers are Yes) -->
-        <div id="openFormWrap" class="cta-wrap" style="display:none">
-          <a class="button" id="openFormBtn"
-             href="https://docs.google.com/forms/d/e/1FAIpQLSeZYPI7qD0iieOOxrHQYG5zRwSkksIDFpsoL5EGm_zCRInqMg/viewform?usp=header"
-             target="_blank" rel="noopener">
-            Open Application Form
-          </a>
-        </div>
-
-        <div class="helper center">
-          You may be asked to sign in with Google to upload files.  
-          <br><a href="index.html">← Back to role details</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <small>© <span id="year"></span> AI Startup. All rights reserved.</small>
-    </div>
-  </footer>
-
-  <script src="assets/script.js"></script>
-  <script>
-    // Gate logic
-    const citizen = document.getElementById('usCitizen');
-    const over18  = document.getElementById('over18');
-    const openWrap = document.getElementById('openFormWrap');
-    const decline  = document.getElementById('declineMsg');
-
-    function updateGate() {
-      const c = citizen.value, a = over18.value;
-      const eligible = (c === 'yes' && a === 'yes');
-      const ineligible = (c === 'no' || a === 'no');
-
-      openWrap.style.display = eligible ? 'flex' : 'none';
-      decline.style.display  = ineligible ? 'block' : 'none';
+      if (c === "yes" && a === "yes") {
+        btn.setAttribute("href", formURL);
+        btn.setAttribute("target", "_blank");
+        btn.setAttribute("rel", "noopener");
+        btn.style.pointerEvents = "auto";
+        btn.style.opacity = "1";
+        btn.setAttribute("aria-disabled", "false");
+        deny.style.display = "none";
+      } else {
+        btn.setAttribute("href", "#");
+        btn.removeAttribute("target");
+        btn.style.pointerEvents = "none";
+        btn.style.opacity = ".5";
+        btn.setAttribute("aria-disabled", "true");
+        deny.style.display = (c === "no" || a === "no") ? "block" : "none";
+      }
     }
 
-    citizen.addEventListener('change', updateGate);
-    over18.addEventListener('change', updateGate);
-  </script>
-</body>
-</html>
+    [...citizen, ...age18].forEach(el => el.addEventListener("change", update));
+    update();
+  })();
+</script>
