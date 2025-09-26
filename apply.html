@@ -1,72 +1,126 @@
-<section class="card" id="gate">
-  <div style="text-align:center">
-    <span class="pill">US Citizens only</span>
-    <span class="pill">18+ required</span>
-  </div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apply — Business Development Intern</title>
 
-  <h2 style="text-align:center;margin:14px 0 6px">Application Eligibility</h2>
-  <p class="subtitle" style="text-align:center;margin-top:-6px">Please confirm the two items below to proceed.</p>
+  <!-- Make sure this path matches your repo folder name exactly -->
+  <link rel="stylesheet" href="assets/styles.css" />
 
-  <div class="radio-grid">
-    <div class="radio-group">
-      <label class="field-label">Are you a U.S. Citizen?</label>
-      <div class="choices">
-        <label class="choice"><input type="radio" name="citizen" value="yes"> Yes</label>
-        <label class="choice"><input type="radio" name="citizen" value="no"> No</label>
-      </div>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg">
+
+  <header class="site-header">
+    <div class="container">
+      <h1>Apply: Business Development Intern</h1>
+      <p class="subtitle">Healthcare / Mental Health • Early-stage startup</p>
     </div>
+  </header>
 
-    <div class="radio-group">
-      <label class="field-label">Are you 18 years of age or older?</label>
-      <div class="choices">
-        <label class="choice"><input type="radio" name="age18" value="yes"> Yes</label>
-        <label class="choice"><input type="radio" name="age18" value="no"> No</label>
+  <main class="container">
+
+    <!-- Nice intro card -->
+    <section class="hero-card">
+      <div>
+        <span class="pill">US Citizens only</span>
+        <span class="pill">18+ required</span>
+        <span class="pill">Resume upload via Google Form</span>
       </div>
+      <h2 style="margin:16px 0 8px;letter-spacing:-.01em">Start your application</h2>
+      <p class="subtitle" style="max-width:720px;margin:6px auto 0">
+        Confirm eligibility below. If eligible, you’ll open our secure Google Form in a new tab to complete the application and upload your resume.
+      </p>
+    </section>
+
+    <!-- ELIGIBILITY GATE -->
+    <section class="card" id="gate" style="margin-top:18px">
+      <h2 style="text-align:center;margin:0 0 6px">Application Eligibility</h2>
+      <p class="subtitle" style="text-align:center;margin-top:-6px">Please confirm both items to proceed.</p>
+
+      <div class="radio-grid">
+        <div class="radio-group">
+          <label class="field-label">Are you a U.S. Citizen?</label>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="citizen" value="yes"> Yes</label>
+            <label class="choice"><input type="radio" name="citizen" value="no"> No</label>
+          </div>
+        </div>
+
+        <div class="radio-group">
+          <label class="field-label">Are you 18 years of age or older?</label>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="age18" value="yes"> Yes</label>
+            <label class="choice"><input type="radio" name="age18" value="no"> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-wrap" style="margin-top:10px">
+        <a id="openFormBtn" class="button" href="#" aria-disabled="true" style="pointer-events:none;opacity:.5">
+          Continue to Application
+        </a>
+      </div>
+
+      <div id="denyMsg" class="hint warn" style="display:none">
+        You must be a U.S. citizen and 18+ to apply.
+      </div>
+    </section>
+
+    <div class="cta-wrap">
+      <a class="button ghost" href="index.html">← Back</a>
     </div>
-  </div>
+  </main>
 
-  <div class="cta-wrap" style="margin-top:10px">
-    <a id="openFormBtn" class="button" href="#" aria-disabled="true" style="pointer-events:none;opacity:.5">
-      Continue to Application
-    </a>
-  </div>
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> AI Startup. All rights reserved.</small>
+    </div>
+  </footer>
 
-  <div id="denyMsg" class="hint warn" style="display:none">
-    You must be a U.S. citizen and 18+ to apply.
-  </div>
-</section>
+  <script>
+    // Footer year
+    document.addEventListener("DOMContentLoaded", () => {
+      const y = document.getElementById("year");
+      if (y) y.textContent = new Date().getFullYear();
+    });
 
-<script>
-  (function () {
-    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSeZYPI7qD0iieOOxrHQYG5zRwSkksIDFpsoL5EGm_zCRInqMg/viewform?usp=dialog"; // <-- replace
-    const btn = document.getElementById("openFormBtn");
-    const deny = document.getElementById("denyMsg");
-    const citizen = Array.from(document.getElementsByName("citizen"));
-    const age18 = Array.from(document.getElementsByName("age18"));
+    // === Eligibility gate logic ===
+    (function () {
+      // REPLACE with your real Form view URL (Send → Link), not forms.gle short link
+      const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSeZYPI7qD0iieOOxrHQYG5zRwSkksIDFpsoL5EGm_zCRInqMg/viewform?usp=header";
+      const btn = document.getElementById("openFormBtn");
+      const deny = document.getElementById("denyMsg");
+      const citizen = Array.from(document.getElementsByName("citizen"));
+      const age18 = Array.from(document.getElementsByName("age18"));
 
-    function update() {
-      const c = citizen.find(r => r.checked)?.value;
-      const a = age18.find(r => r.checked)?.value;
-      const ok = (c === "yes" && a === "yes");
+      function update() {
+        const c = citizen.find(r => r.checked)?.value;
+        const a = age18.find(r => r.checked)?.value;
+        const ok = (c === "yes" && a === "yes");
 
-      if (ok) {
-        btn.href = formURL;
-        btn.target = "_blank";
-        btn.rel = "noopener";
-        btn.style.pointerEvents = "auto";
-        btn.style.opacity = "1";
-        btn.setAttribute("aria-disabled","false");
-        deny.style.display = "none";
-      } else {
-        btn.href = "#";
-        btn.removeAttribute("target");
-        btn.style.pointerEvents = "none";
-        btn.style.opacity = ".5";
-        btn.setAttribute("aria-disabled","true");
-        deny.style.display = (c === "no" || a === "no") ? "block" : "none";
+        if (ok) {
+          btn.href = formURL;
+          btn.target = "_blank";
+          btn.rel = "noopener";
+          btn.style.pointerEvents = "auto";
+          btn.style.opacity = "1";
+          btn.setAttribute("aria-disabled","false");
+          deny.style.display = "none";
+        } else {
+          btn.href = "#";
+          btn.removeAttribute("target");
+          btn.style.pointerEvents = "none";
+          btn.style.opacity = ".5";
+          btn.setAttribute("aria-disabled","true");
+          deny.style.display = (c === "no" || a === "no") ? "block" : "none";
+        }
       }
-    }
-    [...citizen, ...age18].forEach(el => el.addEventListener("change", update));
-    update();
-  })();
-</script>
+      [...citizen, ...age18].forEach(el => el.addEventListener("change", update));
+      update();
+    })();
+  </script>
+</body>
+</html>
