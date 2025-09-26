@@ -2,6 +2,7 @@
 
 https://vidhivault.github.io/Business-Development-Intern/
 
+
 Static site + embedded Google Form (with resume upload).  
 Hosting: GitHub Pages. Storage + notifications: Google Forms/Sheets/Drive.
 
