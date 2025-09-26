@@ -1,36 +1,44 @@
 <section class="card" id="gate">
-  <h2>Application Eligibility</h2>
-  <p class="subtitle" style="margin-top:-6px">Please confirm the two items below to proceed.</p>
-
-  <div style="display:grid; gap:12px; margin:14px 0">
-    <label>
-      <strong>Are you a U.S. Citizen?</strong><br/>
-      <label style="margin-right:12px"><input type="radio" name="citizen" value="yes"> Yes</label>
-      <label><input type="radio" name="citizen" value="no"> No</label>
-    </label>
-
-    <label>
-      <strong>Are you 18 years of age or older?</strong><br/>
-      <label style="margin-right:12px"><input type="radio" name="age18" value="yes"> Yes</label>
-      <label><input type="radio" name="age18" value="no"> No</label>
-    </label>
+  <div style="text-align:center">
+    <span class="pill">US Citizens only</span>
+    <span class="pill">18+ required</span>
   </div>
 
-  <div class="cta-wrap" style="margin-top:6px">
-    <a id="openFormBtn" class="button" href="#" aria-disabled="true" style="pointer-events:none; opacity:.5">
+  <h2 style="text-align:center;margin:14px 0 6px">Application Eligibility</h2>
+  <p class="subtitle" style="text-align:center;margin-top:-6px">Please confirm the two items below to proceed.</p>
+
+  <div class="radio-grid">
+    <div class="radio-group">
+      <label class="field-label">Are you a U.S. Citizen?</label>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="citizen" value="yes"> Yes</label>
+        <label class="choice"><input type="radio" name="citizen" value="no"> No</label>
+      </div>
+    </div>
+
+    <div class="radio-group">
+      <label class="field-label">Are you 18 years of age or older?</label>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="age18" value="yes"> Yes</label>
+        <label class="choice"><input type="radio" name="age18" value="no"> No</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-wrap" style="margin-top:10px">
+    <a id="openFormBtn" class="button" href="#" aria-disabled="true" style="pointer-events:none;opacity:.5">
       Continue to Application
     </a>
   </div>
 
-  <div id="denyMsg" style="text-align:center; color:#b45309; background:#fff7ed; border:1px solid #fde68a; padding:10px 12px; border-radius:12px; margin-top:10px; display:none">
+  <div id="denyMsg" class="hint warn" style="display:none">
     You must be a U.S. citizen and 18+ to apply.
   </div>
 </section>
 
 <script>
-  // === Eligibility gate logic ===
   (function () {
-    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSeZYPI7qD0iieOOxrHQYG5zRwSkksIDFpsoL5EGm_zCRInqMg/viewform?usp=dialog"; // <-- REPLACE
+    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSeZYPI7qD0iieOOxrHQYG5zRwSkksIDFpsoL5EGm_zCRInqMg/viewform?usp=dialog"; // <-- replace
     const btn = document.getElementById("openFormBtn");
     const deny = document.getElementById("denyMsg");
     const citizen = Array.from(document.getElementsByName("citizen"));
@@ -39,25 +47,25 @@
     function update() {
       const c = citizen.find(r => r.checked)?.value;
       const a = age18.find(r => r.checked)?.value;
+      const ok = (c === "yes" && a === "yes");
 
-      if (c === "yes" && a === "yes") {
-        btn.setAttribute("href", formURL);
-        btn.setAttribute("target", "_blank");
-        btn.setAttribute("rel", "noopener");
+      if (ok) {
+        btn.href = formURL;
+        btn.target = "_blank";
+        btn.rel = "noopener";
         btn.style.pointerEvents = "auto";
         btn.style.opacity = "1";
-        btn.setAttribute("aria-disabled", "false");
+        btn.setAttribute("aria-disabled","false");
         deny.style.display = "none";
       } else {
-        btn.setAttribute("href", "#");
+        btn.href = "#";
         btn.removeAttribute("target");
         btn.style.pointerEvents = "none";
         btn.style.opacity = ".5";
-        btn.setAttribute("aria-disabled", "true");
+        btn.setAttribute("aria-disabled","true");
         deny.style.display = (c === "no" || a === "no") ? "block" : "none";
       }
     }
-
     [...citizen, ...age18].forEach(el => el.addEventListener("change", update));
     update();
   })();

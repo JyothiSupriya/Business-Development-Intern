@@ -116,3 +116,28 @@ li{margin: .35rem 0}
   border-radius: 10px;
   display:inline-block;
 }
+
+/* ---- Eligibility gate polish ---- */
+.pill{
+  display:inline-block; padding:.35rem .7rem; border-radius:999px;
+  background:#fff; border:1px solid #e5e7eb; color:#374151; font-size:.85rem; margin:.25rem .25rem 0;
+}
+.radio-grid{
+  display:grid; gap:16px; margin:18px 0;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.radio-group{
+  background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:12px 14px;
+}
+.field-label{
+  display:block; font-weight:700; margin-bottom:8px; letter-spacing:-.01em;
+}
+.choices{ display:flex; gap:16px; }
+.choice{ display:flex; align-items:center; gap:8px; color:#374151; }
+.hint{
+  text-align:center; font-size:.92rem; color:#6b7280; margin-top:10px;
+  background:#fff; border:1px dashed #d1d5db; padding:10px 12px; border-radius:12px;
+}
+.hint.warn{
+  color:#b45309; background:#fff7ed; border-color:#fde68a;
+}
