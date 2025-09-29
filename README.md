@@ -1,6 +1,6 @@
-# Business Development Intern — Hiring Site
+# Clinical-Strategy-and-Business-Development-Intern— Hiring Site
 
-https://vidhivault.github.io/Business-Development-Intern/
+https://vidhivault.github.io/Clinical-Strategy-and-Business-Development-Intern/
 
 
 Static site + embedded Google Form (with resume upload).  
