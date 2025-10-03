@@ -3,12 +3,12 @@
    ========================================= */
 
 :root{
-  /* Soft greens + neutrals */
-  --bg1:#f6fbf7;          /* page base */
-  --gradA:#e9f7ef;        /* mint wash */
-  --gradB:#dff5e6;        /* pale sage */
-  --gradC:#e6fbf2;        /* aqua mint */
-  --ink:#0f2316;          /* primary text (deep green-black) */
+  --bg1:#f6fbf7;
+  --gradA:#e9f7ef;
+  --gradB:#dff5e6;
+  --gradC:#e6fbf2;
+
+  --ink:#0f2316;          /* main text (deep green-black) */
   --muted:#5f6d66;        /* secondary text */
   --card:#ffffffcc;       /* frosted card */
   --border:#e3ece6;       /* light green border */
@@ -21,8 +21,13 @@
   --btn-grad-c:#d7fcd4;
   --btn-text:#0a1d12;
 
-  /* Focus ring */
   --focus:#86efac;
+
+  /* Logo crop (tweak if needed to trim white edges in the PNG) */
+  --logo-crop-top:10%;
+  --logo-crop-right:5%;
+  --logo-crop-bottom:10%;
+  --logo-crop-left:5%;
 }
 
 *{box-sizing:border-box}
@@ -51,10 +56,20 @@ body{
 /* Header & Typography */
 .site-header{ padding: 68px 0 28px; text-align:center; }
 
-h1,h2,h3{
-  letter-spacing:-.01em;
-  margin: 0 0 10px;
-  color: var(--ink);
+h1,h2,h3{ letter-spacing:-.01em; color: var(--ink); }
+
+.company-title{
+  margin: 6px 0 4px;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 900;
+  letter-spacing:-0.02em;
+  font-family: "Playfair Display", Georgia, serif;
+}
+.role-title{
+  margin: 2px 0 6px;
+  font-size: clamp(18px, 3.2vw, 28px);
+  font-weight: 700;
+  letter-spacing:-0.01em;
 }
 
 .subtitle{
@@ -73,11 +88,20 @@ h1,h2,h3{
   gap:12px;
   margin-bottom: 10px;
 }
-.logo{
-  width:56px; height:56px; object-fit:contain;
-  border-radius:14px; background:#fff;
+
+/* Crop the extra white margins around the logo without editing the file */
+.logo-wrap{
+  width:56px; height:56px;
+  border-radius:14px;
+  overflow:hidden;
   box-shadow:0 6px 18px rgba(0,0,0,.08);
-  padding:6px;
+  background:#fff;         /* looks good if PNG is transparent */
+}
+.logo{
+  width:100%; height:100%;
+  object-fit:cover;
+  /* Trim outer whitespace by clipping a bit from each side — adjust if needed */
+  clip-path: inset(var(--logo-crop-top) var(--logo-crop-right) var(--logo-crop-bottom) var(--logo-crop-left));
 }
 .company-badge{
   display:inline-block;
@@ -89,21 +113,6 @@ h1,h2,h3{
   letter-spacing:.3px;
   color:var(--ink);
   backdrop-filter: blur(6px);
-}
-
-/* Hero titles */
-.company-title{
-  margin: 6px 0 4px;
-  font-size: clamp(36px, 6vw, 56px);
-  font-weight: 900;
-  letter-spacing:-0.02em;
-}
-.role-title{
-  margin: 2px 0 6px;
-  font-size: clamp(18px, 3.2vw, 28px);
-  font-weight: 700;
-  letter-spacing:-0.01em;
-  color: var(--ink);
 }
 
 /* Cards */
@@ -124,18 +133,11 @@ li{ margin:.4rem 0 }
 
 /* Buttons */
 .cta-wrap{
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  margin:22px 0 8px;
+  display:flex; gap:12px; justify-content:center; margin:22px 0 8px;
 }
 .button{
-  display:inline-block;
-  padding:12px 24px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:800;
-  box-shadow:var(--shadow);
+  display:inline-block; padding:12px 24px; border-radius:999px; text-decoration:none;
+  font-weight:800; box-shadow:var(--shadow);
   transition: transform .08s ease, opacity .2s ease, box-shadow .2s ease;
   color: var(--btn-text);
   background: linear-gradient(135deg, var(--btn-grad-a) 0%, var(--btn-grad-b) 50%, var(--btn-grad-c) 100%);
@@ -143,17 +145,10 @@ li{ margin:.4rem 0 }
 }
 .button:hover{ transform: translateY(-1px); opacity:.96 }
 .button:active{ transform: translateY(0); opacity:.92 }
-.button.ghost{
-  color: var(--ink);
-  background:white;
-  border:1px solid var(--border);
-}
-.button:focus-visible{
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
-}
+.button.ghost{ color: var(--ink); background:white; border:1px solid var(--border); }
+.button:focus-visible{ outline: 3px solid var(--focus); outline-offset: 2px; }
 
-/* Hero card (optional section header slabs) */
+/* Hero card */
 .hero-card{
   background: linear-gradient(135deg,#ebfff1b0 0%, #e8fff5a8 45%, #f0fff3a8 100%);
   border: 1px solid var(--border);
@@ -163,15 +158,21 @@ li{ margin:.4rem 0 }
   text-align:center;
   margin-top: 6px;
 }
+.hero-title{
+  margin:16px 0 6px;
+  font-size: clamp(22px, 3.4vw, 30px);
+  font-weight:800;
+  letter-spacing:-.01em;
+}
 
-/* Pills (badges like “US citizens only”) */
+/* Pills */
 .pills{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
 .pill{
   display:inline-block; padding:.38rem .72rem; border-radius:999px;
   background:#fff; border:1px solid var(--border); color:#2b3a31; font-size:.85rem;
 }
 
-/* Eligibility gate pieces (used on apply.html) */
+/* Eligibility gate */
 .radio-grid{
   display:grid; gap:18px; margin:20px 0 10px;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -196,22 +197,7 @@ input[type="radio"]{ width:18px; height:18px; accent-color:#86efac; }
 .hint.warn{ color:#7c3e07; background:#fff7ed; border-color:#fde68a; }
 
 /* Footer */
-.site-footer{
-  padding: 40px 0 60px;
-  text-align:center;
-  color:var(--muted);
-}
-
-/* Monospace label chip (if used) */
-.mono{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,"Liberation Mono","Courier New", monospace;
-  font-size: .9rem;
-  background: #ffffff;
-  border: 1px solid var(--border);
-  padding: 10px 12px;
-  border-radius: 10px;
-  display:inline-block;
-}
+.site-footer{ padding: 40px 0 60px; text-align:center; color:var(--muted); }
 
 /* Links on green theme */
 a{ color:#155e2b; }
