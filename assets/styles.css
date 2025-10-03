@@ -83,7 +83,7 @@ h1,h2,h3{ letter-spacing:-.01em; color: var(--ink); }
 }
 
 /* Show the logo cleanly (no crop). If your PNG has whitespace, it will still show centered. */
-.logo-wrap{
+.logo{
   width:250px;                 /* tweak 56–80px to taste */
   height:250px;
   object-fit:contain;          /* do not crop */
@@ -91,7 +91,8 @@ h1,h2,h3{ letter-spacing:-.01em; color: var(--ink); }
   border-radius:20px;          /* soft corners around the image box */
   background:#fff;             /* looks good with transparent PNGs */
   box-shadow: var(--shadow);
-  padding:0px;                 /* breathing room if the art touches edges */
+  padding:0px;   
+  clip-path: inset(16% 14% 16% 14% round 18px);              /* breathing room if the art touches edges */
 }
 
 /* Cards */
