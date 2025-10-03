@@ -83,15 +83,15 @@ h1,h2,h3{ letter-spacing:-.01em; color: var(--ink); }
 }
 
 /* Show the logo cleanly (no crop). If your PNG has whitespace, it will still show centered. */
-.logo{
-  width:500px;                 /* tweak 56–80px to taste */
-  height:500px;
+.logo-wrap{
+  width:250px;                 /* tweak 56–80px to taste */
+  height:250px;
   object-fit:contain;          /* do not crop */
   display:block;
-  border-radius:40px;          /* soft corners around the image box */
+  border-radius:20px;          /* soft corners around the image box */
   background:#fff;             /* looks good with transparent PNGs */
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
-  padding:30px;                 /* breathing room if the art touches edges */
+  box-shadow: var(--shadow);
+  padding:0px;                 /* breathing room if the art touches edges */
 }
 
 /* Cards */
