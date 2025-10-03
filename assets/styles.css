@@ -79,19 +79,19 @@ h1,h2,h3{ letter-spacing:-.01em; color: var(--ink); }
   display:flex;
   align-items:center;
   justify-content:center;
-  margin-bottom: 10px;
+  margin-bottom: 8px 0 20px;
 }
 
 /* Show the logo cleanly (no crop). If your PNG has whitespace, it will still show centered. */
 .logo{
-  width:64px;                 /* tweak 56–80px to taste */
-  height:64px;
+  width:112px;                 /* tweak 56–80px to taste */
+  height:112px;
   object-fit:contain;          /* do not crop */
   display:block;
-  border-radius:14px;          /* soft corners around the image box */
+  border-radius:16px;          /* soft corners around the image box */
   background:#fff;             /* looks good with transparent PNGs */
   box-shadow:0 6px 18px rgba(0,0,0,.08);
-  padding:6px;                 /* breathing room if the art touches edges */
+  padding:8px;                 /* breathing room if the art touches edges */
 }
 
 /* Cards */
