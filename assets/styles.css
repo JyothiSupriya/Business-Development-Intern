@@ -79,13 +79,13 @@ h1,h2,h3{ letter-spacing:-.01em; color: var(--ink); }
   display:flex;
   align-items:center;
   justify-content:center;
-  margin-bottom: 8px 0 20px;
+  margin-bottom: 12px;
 }
 
 /* Show the logo cleanly (no crop). If your PNG has whitespace, it will still show centered. */
 .logo{
-  width:112px;                 /* tweak 56–80px to taste */
-  height:112px;
+  width:200px;                 /* tweak 56–80px to taste */
+  height:200px;
   object-fit:contain;          /* do not crop */
   display:block;
   border-radius:16px;          /* soft corners around the image box */
