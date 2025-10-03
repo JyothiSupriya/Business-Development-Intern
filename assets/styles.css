@@ -22,12 +22,6 @@
   --btn-text:#0a1d12;
 
   --focus:#86efac;
-
-  /* Logo crop (tweak if needed to trim white edges in the PNG) */
-  --logo-crop-top:10%;
-  --logo-crop-right:5%;
-  --logo-crop-bottom:10%;
-  --logo-crop-left:5%;
 }
 
 *{box-sizing:border-box}
@@ -80,39 +74,24 @@ h1,h2,h3{ letter-spacing:-.01em; color: var(--ink); }
   line-height: 1.55;
 }
 
-/* Brand row (logo + badge) */
+/* Brand row (logo only) */
 .brand{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:12px;
   margin-bottom: 10px;
 }
 
-/* Crop the extra white margins around the logo without editing the file */
-.logo-wrap{
-  width:56px; height:56px;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
-  background:#fff;         /* looks good if PNG is transparent */
-}
+/* Show the logo cleanly (no crop). If your PNG has whitespace, it will still show centered. */
 .logo{
-  width:100%; height:100%;
-  object-fit:cover;
-  /* Trim outer whitespace by clipping a bit from each side — adjust if needed */
-  clip-path: inset(var(--logo-crop-top) var(--logo-crop-right) var(--logo-crop-bottom) var(--logo-crop-left));
-}
-.company-badge{
-  display:inline-block;
-  padding:.44rem .85rem;
-  border-radius:999px;
-  background:#ffffffcc;
-  border:1px solid var(--border);
-  font-weight:800;
-  letter-spacing:.3px;
-  color:var(--ink);
-  backdrop-filter: blur(6px);
+  width:64px;                 /* tweak 56–80px to taste */
+  height:64px;
+  object-fit:contain;          /* do not crop */
+  display:block;
+  border-radius:14px;          /* soft corners around the image box */
+  background:#fff;             /* looks good with transparent PNGs */
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  padding:6px;                 /* breathing room if the art touches edges */
 }
 
 /* Cards */
