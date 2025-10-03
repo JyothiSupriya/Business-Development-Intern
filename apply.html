@@ -8,7 +8,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="assets/styles.css" />
 
-  <!-- Fonts: headings vs body -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
@@ -18,37 +18,50 @@
 
   <header class="site-header">
     <div class="container center-col">
-      <h1 class="display">Apply: Clinical Strategy & Business Development Intern</h1>
-      <p class="subtitle">Healthcare / Mental Health • Early-stage startup</p>
+      <!-- Brand row -->
+      <div class="brand">
+        <img class="logo" src="assets/thram-ai-logo.png" alt="Thram AI logo" />
+        <span class="company-badge">Thram AI</span>
+      </div>
+
+      <!-- Company big; role smaller -->
+      <h1 class="company-title">Thram AI</h1>
+      <h2 class="role-title">Clinical Strategy &amp; Business Development Intern</h2>
+      <p class="subtitle">AI-enabled platform for mental health clinics</p>
     </div>
   </header>
 
   <main class="container">
     <!-- Soft hero intro -->
     <section class="hero-card center-col">
+      <div class="pills">
+        <span class="pill">US citizen or permanent resident</span>
+        <span class="pill">18+ required</span>
+        <span class="pill">Resume upload via Google Form</span>
+      </div>
       <h2 class="hero-title">Start your application</h2>
       <p class="subtitle hero-sub">
         Confirm eligibility below. If eligible, you’ll open our secure Google Form in a new tab and upload your resume.
       </p>
     </section>
 
-    <!-- Eligibility Gate (centered) -->
+    <!-- Eligibility Gate -->
     <section class="card center-col" id="gate">
       <h2 class="centered">Application Eligibility</h2>
       <p class="subtitle centered" style="margin-top:-6px">Please confirm both items to proceed.</p>
 
       <div class="radio-grid">
         <div class="radio-group">
-          <label class="field-label">Are you a U.S. citizen or permanent resident (green card holder)?</label>
-          <div class="choices">
+          <label class="field-label" for="elig-status">Are you a U.S. citizen or permanent resident (green card holder)?</label>
+          <div class="choices" id="elig-status">
             <label class="choice"><input type="radio" name="citizen" value="yes"> Yes</label>
             <label class="choice"><input type="radio" name="citizen" value="no"> No</label>
           </div>
         </div>
 
         <div class="radio-group">
-          <label class="field-label">Are you 18 years of age or older?</label>
-          <div class="choices">
+          <label class="field-label" for="elig-age">Are you 18 years of age or older?</label>
+          <div class="choices" id="elig-age">
             <label class="choice"><input type="radio" name="age18" value="yes"> Yes</label>
             <label class="choice"><input type="radio" name="age18" value="no"> No</label>
           </div>
@@ -56,7 +69,7 @@
       </div>
 
       <div class="cta-wrap" style="margin-top:14px">
-        <a id="openFormBtn" class="button pastel" href="#" aria-disabled="true" style="pointer-events:none;opacity:.55">
+        <a id="openFormBtn" class="button" href="#" aria-disabled="true" style="pointer-events:none;opacity:.55">
           Continue to Application
         </a>
       </div>
@@ -73,7 +86,7 @@
 
   <footer class="site-footer">
     <div class="container center-col">
-      <small>© <span id="year"></span> AI Startup. All rights reserved.</small>
+      <small>© <span id="year"></span> Thram AI. All rights reserved.</small>
     </div>
   </footer>
 
@@ -81,10 +94,10 @@
     // footer year
     (function(){const y=document.getElementById("year"); if(y) y.textContent=new Date().getFullYear();})();
 
-    // === Eligibility gate ===
+    // Eligibility gate logic
     (function () {
       // Use your full Google Form VIEW link (Send → Link). NOT the forms.gle short link.
-      const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSeZYPI7qD0iieOOxrHQYG5zRwSkksIDFpsoL5EGm_zCRInqMg/viewform?usp=dialog";
+      const formURL = "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700;800&display=swap";
       const btn = document.getElementById("openFormBtn");
       const deny = document.getElementById("denyMsg");
       const citizen = Array.from(document.getElementsByName("citizen"));

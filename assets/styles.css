@@ -1,27 +1,28 @@
-/* ===============================
-   Thram AI — Pastel Green Theme
-   =============================== */
+/* =========================================
+   Thram AI — Pastel Green Theme (Full CSS)
+   ========================================= */
 
 :root{
-  /* Palette: soft greens + neutrals */
-  --bg1:#f7fbf8;
-  --gradA:#e9f7ef;   /* mint wash */
-  --gradB:#dff5e6;   /* pale sage */
-  --gradC:#e6fbf2;   /* aqua mint */
-  --accent:#1b5e20;  /* deep green for contrast (text/focus) */
-  --ink:#102a14;     /* rich green-black text */
-  --muted:#63706a;   /* desaturated green-gray */
-  --card:#ffffffcc;  /* frosted card */
-  --shadow: 0 12px 34px rgba(16,42,20,.08);
+  /* Soft greens + neutrals */
+  --bg1:#f6fbf7;          /* page base */
+  --gradA:#e9f7ef;        /* mint wash */
+  --gradB:#dff5e6;        /* pale sage */
+  --gradC:#e6fbf2;        /* aqua mint */
+  --ink:#0f2316;          /* primary text (deep green-black) */
+  --muted:#5f6d66;        /* secondary text */
+  --card:#ffffffcc;       /* frosted card */
+  --border:#e3ece6;       /* light green border */
+  --shadow: 0 12px 34px rgba(15,35,22,.08);
   --radius: 26px;
 
-  /* Brand chip + button tunables */
-  --brand-chip-bg:#ffffffcc;
-  --brand-chip-border:#e5ece8;
-  --btn-grad-a:#b6e3c1;   /* pastel green */
-  --btn-grad-b:#a7f3d0;   /* mint */
-  --btn-grad-c:#d7fcd4;   /* light mint-yellow */
-  --btn-text:#0c2912;
+  /* Buttons / accents */
+  --btn-grad-a:#b6e3c1;
+  --btn-grad-b:#a7f3d0;
+  --btn-grad-c:#d7fcd4;
+  --btn-text:#0a1d12;
+
+  /* Focus ring */
+  --focus:#86efac;
 }
 
 *{box-sizing:border-box}
@@ -35,7 +36,6 @@ body{
 }
 
 .bg{
-  /* multi-blob pastel greens */
   background:
     radial-gradient(1200px 600px at -10% -10%, var(--gradA), transparent 60%),
     radial-gradient(1000px 700px at 110% 0%, var(--gradB), transparent 55%),
@@ -43,24 +43,17 @@ body{
     var(--bg1);
 }
 
+/* Layout */
 .container{ width: min(1020px, 92vw); margin: 0 auto; }
-.center-col{ max-width: 780px; margin-left:auto; margin-right:auto; }
+.center-col{ max-width: 780px; margin-inline:auto; }
 .centered{ text-align:center; }
 
-/* ===== Header & Typography ===== */
+/* Header & Typography */
+.site-header{ padding: 68px 0 28px; text-align:center; }
 
-.site-header{ padding: 66px 0 28px; text-align:center; }
-
-h1,h2,h3,.display{
-  /* keep headings strong; if you imported Playfair earlier, it will override nicely */
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+h1,h2,h3{
   letter-spacing:-.01em;
-}
-
-.site-header h1{
   margin: 0 0 10px;
-  font-size: clamp(28px, 4.8vw, 46px);
-  font-weight: 800;
   color: var(--ink);
 }
 
@@ -72,8 +65,48 @@ h1,h2,h3,.display{
   line-height: 1.55;
 }
 
-/* ===== Card ===== */
+/* Brand row (logo + badge) */
+.brand{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-bottom: 10px;
+}
+.logo{
+  width:56px; height:56px; object-fit:contain;
+  border-radius:14px; background:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  padding:6px;
+}
+.company-badge{
+  display:inline-block;
+  padding:.44rem .85rem;
+  border-radius:999px;
+  background:#ffffffcc;
+  border:1px solid var(--border);
+  font-weight:800;
+  letter-spacing:.3px;
+  color:var(--ink);
+  backdrop-filter: blur(6px);
+}
 
+/* Hero titles */
+.company-title{
+  margin: 6px 0 4px;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 900;
+  letter-spacing:-0.02em;
+}
+.role-title{
+  margin: 2px 0 6px;
+  font-size: clamp(18px, 3.2vw, 28px);
+  font-weight: 700;
+  letter-spacing:-0.01em;
+  color: var(--ink);
+}
+
+/* Cards */
 .card{
   background: var(--card);
   backdrop-filter: blur(6px);
@@ -81,58 +114,21 @@ h1,h2,h3,.display{
   box-shadow: var(--shadow);
   padding: 28px;
   margin: 20px auto;
+  border: 1px solid var(--border);
 }
+.card h2, .card h3{ margin-top:0; }
 
-.card h2, .card h3{
-  margin-top:0;
-}
+/* Lists */
+ul{ padding-left:1.2rem }
+li{ margin:.4rem 0 }
 
-/* ===== Brand row (logo + company name) ===== */
-
-.brand{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  margin-bottom: 12px;
-}
-
-.logo{
-  width:56px;
-  height:56px;
-  object-fit:contain;
-  border-radius:14px;
-  background:#fff;                /* helps logos on transparent bg */
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-  padding:6px;
-}
-
-.company-badge{
-  display:inline-block;
-  padding:.44rem .85rem;
-  border-radius:999px;
-  background: var(--brand-chip-bg);
-  border:1px solid var(--brand-chip-border);
-  font-weight:800;
-  color:var(--ink);
-  letter-spacing:.3px;
-  backdrop-filter: blur(6px);
-}
-
-/* ===== Lists ===== */
-
-ul{padding-left: 1.2rem}
-li{margin:.4rem 0}
-
-/* ===== Buttons ===== */
-
+/* Buttons */
 .cta-wrap{
   display:flex;
   gap:12px;
   justify-content:center;
   margin:22px 0 8px;
 }
-
 .button{
   display:inline-block;
   padding:12px 24px;
@@ -141,80 +137,26 @@ li{margin:.4rem 0}
   font-weight:800;
   box-shadow:var(--shadow);
   transition: transform .08s ease, opacity .2s ease, box-shadow .2s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.button:hover{ transform: translateY(-1px); opacity:.96 }
-.button:active{ transform: translateY(0); opacity:.92 }
-
-.button{
   color: var(--btn-text);
   background: linear-gradient(135deg, var(--btn-grad-a) 0%, var(--btn-grad-b) 50%, var(--btn-grad-c) 100%);
   border: 1px solid rgba(0,0,0,.05);
 }
-
+.button:hover{ transform: translateY(-1px); opacity:.96 }
+.button:active{ transform: translateY(0); opacity:.92 }
 .button.ghost{
   color: var(--ink);
   background:white;
-  border:1px solid #e5ece8;
+  border:1px solid var(--border);
 }
-
-/* Keyboard accessibility */
 .button:focus-visible{
-  outline: 3px solid #86efac;      /* green ring */
+  outline: 3px solid var(--focus);
   outline-offset: 2px;
 }
 
-/* ===== Eligibility Gate (if used on apply.html) ===== */
-
-.pills{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
-.pill{
-  display:inline-block; padding:.38rem .72rem; border-radius:999px;
-  background:#fff; border:1px solid #e5ece8; color:#2b3a31; font-size:.85rem;
-}
-
-.radio-grid{
-  display:grid; gap:18px; margin:20px 0 10px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-.radio-group{
-  background:#fff; border:1px solid #e5ece8; border-radius:16px; padding:14px 16px;
-}
-.field-label{
-  display:block; font-weight:700; margin-bottom:10px; letter-spacing:-.01em;
-  font-size: 1.02rem; color: var(--ink);
-}
-.choices{ display:flex; gap:18px; }
-.choice{ display:flex; align-items:center; gap:8px; color:#243b2f; font-size:1rem; }
-
-/* prettier radios */
-input[type="radio"]{
-  width:18px; height:18px; accent-color:#86efac; /* soft green */
-}
-
-/* helper notes */
-.hint{
-  text-align:center; font-size:.93rem; color:var(--muted); margin-top:12px;
-  background:#fff; border:1px dashed #dfe8e3; padding:10px 12px; border-radius:12px;
-}
-.hint.warn{
-  color:#7c3e07; background:#fff7ed; border-color:#fde68a;
-}
-
-/* ===== Footer ===== */
-
-.site-footer{
-  padding: 40px 0 60px;
-  text-align:center;
-  color:var(--muted);
-}
-
-/* ===== Optional: hero card (intro on pages) ===== */
-
+/* Hero card (optional section header slabs) */
 .hero-card{
   background: linear-gradient(135deg,#ebfff1b0 0%, #e8fff5a8 45%, #f0fff3a8 100%);
-  border: 1px solid #e5ece8;
+  border: 1px solid var(--border);
   padding: 26px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -222,18 +164,55 @@ input[type="radio"]{
   margin-top: 6px;
 }
 
-/* ===== Small utility ===== */
+/* Pills (badges like “US citizens only”) */
+.pills{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+.pill{
+  display:inline-block; padding:.38rem .72rem; border-radius:999px;
+  background:#fff; border:1px solid var(--border); color:#2b3a31; font-size:.85rem;
+}
 
+/* Eligibility gate pieces (used on apply.html) */
+.radio-grid{
+  display:grid; gap:18px; margin:20px 0 10px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.radio-group{
+  background:#fff; border:1px solid var(--border);
+  border-radius:16px; padding:14px 16px;
+}
+.field-label{
+  display:block; font-weight:700; margin-bottom:10px; letter-spacing:-.01em;
+  font-size: 1.02rem; color: var(--ink);
+}
+.choices{ display:flex; gap:18px; flex-wrap:wrap; }
+.choice{ display:flex; align-items:center; gap:8px; color:#243b2f; font-size:1rem; }
+input[type="radio"]{ width:18px; height:18px; accent-color:#86efac; }
+
+/* Helper messages */
+.hint{
+  text-align:center; font-size:.93rem; color:var(--muted); margin-top:12px;
+  background:#fff; border:1px dashed var(--border); padding:10px 12px; border-radius:12px;
+}
+.hint.warn{ color:#7c3e07; background:#fff7ed; border-color:#fde68a; }
+
+/* Footer */
+.site-footer{
+  padding: 40px 0 60px;
+  text-align:center;
+  color:var(--muted);
+}
+
+/* Monospace label chip (if used) */
 .mono{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,"Liberation Mono","Courier New", monospace;
   font-size: .9rem;
   background: #ffffff;
-  border: 1px solid #e5ece8;
+  border: 1px solid var(--border);
   padding: 10px 12px;
   border-radius: 10px;
   display:inline-block;
 }
 
-/* Improve link contrast on green theme */
+/* Links on green theme */
 a{ color:#155e2b; }
 a:hover{ opacity:.9; }
